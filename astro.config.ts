@@ -7,15 +7,14 @@ import tailwindcss, { type PluginOptions } from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://revamp.chat",
   integrations: [mdx(), sitemap()],
   vite: {
     // @ts-expect-error types are jank 
 	plugins: [tailwindcss()],
   },
   server: {
-    port: 3000,
-    allowedHosts: ["7795a11a8395.ngrok-free.app"],
+    port: 3000
   },
   prefetch: {
     defaultStrategy: "viewport",
