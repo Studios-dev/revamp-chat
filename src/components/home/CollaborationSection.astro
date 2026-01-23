@@ -1,0 +1,199 @@
+---
+---
+<!-- Collaboration Section -->
+<section class="flex flex-col items-center gap-8 py-20 px-4 md:px-0">
+  <div class="text-center max-w-2xl mx-auto space-y-4">
+    <h2 class="text-3xl md:text-5xl font-bold">Collaborate like never before</h2>
+    <p class="text-white/70 text-lg">
+      Revamp brings all the tools your team uses together, connecting everything at your fingertips. Plus, extend native functionality with integrations, connecting Revamp with apps like GitHub and Google Drive.
+    </p>
+  </div>
+
+  <!-- Interactive Window -->
+  <div class="w-full max-w-5xl bg-[#121212] rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative min-h-[500px] flex flex-col group">
+    <!-- Navbar/Tabs -->
+    <div class="absolute top-6 left-1/2 -translate-x-1/2 z-20">
+      <div class="bg-[#1E1E1E]/90 backdrop-blur-md rounded-full p-1.5 flex gap-1 border border-white/5 shadow-lg overflow-x-auto max-w-[90vw]">
+        <button class="tab-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white/10 text-white shadow-sm" data-tab="chat">Chat</button>
+        <button class="tab-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/60 hover:text-white hover:bg-white/5" data-tab="docs">Docs</button>
+        <button class="tab-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/60 hover:text-white hover:bg-white/5" data-tab="whiteboarding">Whiteboarding</button>
+        <button class="tab-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/60 hover:text-white hover:bg-white/5" data-tab="scheduling">Scheduling</button>
+        <button class="tab-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/60 hover:text-white hover:bg-white/5" data-tab="integrations">Integrations</button>
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="relative grow w-full p-1 pt-24">
+      
+      <!-- Tab: Chat -->
+      <div class="tab-content h-[500px] flex flex-col" id="tab-chat">
+        <!-- Messages Area -->
+        <div class="grow flex flex-col justify-end p-8 space-y-4 overflow-y-auto" id="chat-messages">
+            <!-- Initial Messages will be populated by JS -->
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-6 pt-2">
+            <div class="bg-[#1E1E1E] border border-white/10 rounded-2xl flex items-center p-2 pr-4 gap-4">
+                <input type="text" placeholder="Type Anything..." class="bg-transparent border-none outline-none text-white/80 grow px-4 h-12" disabled />
+                <div class="flex gap-2">
+                    <button class="size-8 rounded-full bg-white/5 grid place-items-center hover:bg-white/10 transition">🙂</button>
+                    <button class="size-8 rounded-full bg-white/5 grid place-items-center hover:bg-white/10 transition">➕</button>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Tab: Docs -->
+      <div class="tab-content h-[500px] hidden flex-col items-center justify-center text-white/40" id="tab-docs">
+        <div class="text-6xl mb-4">📄</div>
+        <p>Document collaboration interface would appear here.</p>
+      </div>
+
+       <!-- Tab: Whiteboarding -->
+       <div class="tab-content h-[500px] hidden flex-col items-center justify-center text-white/40" id="tab-whiteboarding">
+        <div class="text-6xl mb-4">🖊️</div>
+        <p>Infinite canvas whiteboarding.</p>
+      </div>
+
+      <!-- Tab: Scheduling -->
+      <div class="tab-content h-[500px] hidden flex-col items-center justify-center text-white/40" id="tab-scheduling">
+        <div class="text-6xl mb-4">📅</div>
+        <p>Team calendar and scheduling.</p>
+      </div>
+
+      <!-- Tab: Integrations -->
+      <div class="tab-content h-[500px] hidden flex-col items-center justify-center text-white/40" id="tab-integrations">
+        <div class="text-6xl mb-4">🔌</div>
+        <p>Connect GitHub, Linear, Google Drive, and more.</p>
+      </div>
+      
+    </div>
+    
+    <!-- Gradient Border Effect -->
+     <div class="absolute inset-0 rounded-3xl pointer-events-none ring-1 ring-inset ring-white/10"></div>
+  </div>
+</section>
+
+<script>
+    // Tab Switching Logic
+    const buttons = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-tab');
+            
+            // Update buttons
+            buttons.forEach(b => {
+                if(b.getAttribute('data-tab') === target) {
+                    b.classList.add('bg-white/10', 'text-white', 'shadow-sm');
+                    b.classList.remove('text-white/60', 'hover:bg-white/5');
+                } else {
+                    b.classList.remove('bg-white/10', 'text-white', 'shadow-sm');
+                    b.classList.add('text-white/60', 'hover:bg-white/5');
+                }
+            });
+
+            // Update Content
+            contents.forEach(c => {
+               if(c.id === `tab-${target}`) {
+                   c.classList.remove('hidden');
+                   c.classList.add('flex');
+               } else {
+                   c.classList.add('hidden');
+                   c.classList.remove('flex');
+               }
+            });
+        });
+    });
+
+    // Chat Simulation Logic
+    const chatContainer = document.getElementById('chat-messages');
+    
+    const avatars = {
+        'user': 'https://api.dicebear.com/9.x/micah/svg?seed=Felix',
+        'ai': 'https://api.dicebear.com/9.x/bottts-neutral/svg?seed=RevampBot',
+        'collab': 'https://api.dicebear.com/9.x/micah/svg?seed=Sarah'
+    };
+
+    const messages = [
+        { type: 'collab', text: 'Hey team, did we finalize the Q3 roadmap?', delay: 1000 },
+        { type: 'user', text: 'Just wrapping it up. @RevampBot can you summarize the key action items from the last meeting?', delay: 2500 },
+        { type: 'ai', text: 'Sure! Here are the key action items:\n1. Finalize API v2 specs\n2. Update design system tokens\n3. Schedule user interviews for the new dashboard.', delay: 1500 },
+        { type: 'collab', text: 'Thanks! I will pick up the API specs.', delay: 3000 },
+        { type: 'user', text: 'Great, I will handle the design tokens.', delay: 2000 },
+        { type: 'ai', text: 'I have created Jira tickets for both tasks and assigned them to you.', delay: 1000 },
+    ];
+
+    let messageIndex = 0;
+
+    function createMessageElement(msg) {
+        const isUser = msg.type === 'user';
+        const isAi = msg.type === 'ai';
+        
+        const div = document.createElement('div');
+        div.className = `flex gap-4 max-w-[80%] ${isUser ? 'self-end flex-row-reverse' : 'self-start'}`;
+        
+        const avatar = document.createElement('img');
+        avatar.src = avatars[msg.type];
+        avatar.className = "size-8 rounded-full bg-white/10 border border-white/5";
+        
+        const bubble = document.createElement('div');
+        bubble.className = `py-2 px-4 rounded-2xl text-sm leading-relaxed ${
+            isUser ? 'bg-[#3B79F5] text-white' : 
+            isAi ? 'bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-cyan-500/30 text-cyan-50 shadow-[0_0_15px_rgba(6,182,212,0.15)]' : 
+            'bg-[#27272a] text-gray-200'
+        }`;
+        bubble.innerText = msg.text;
+
+        div.appendChild(avatar);
+        div.appendChild(bubble);
+        
+        // Animation
+        div.style.opacity = '0';
+        div.style.transform = 'translateY(10px)';
+        div.style.transition = 'all 0.4s ease-out';
+
+        return div;
+    }
+
+    function playChat() {
+        if (messageIndex >= messages.length) {
+            // Reset after a pause
+            setTimeout(() => {
+                chatContainer.innerHTML = '';
+                messageIndex = 0;
+                playChat();
+            }, 5000);
+            return;
+        }
+
+        const msgData = messages[messageIndex];
+        const el = createMessageElement(msgData);
+        chatContainer.appendChild(el);
+
+        // Trigger reflow
+        void el.offsetWidth;
+        
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        
+        chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+
+        messageIndex++;
+        setTimeout(playChat, msgData.delay);
+    }
+
+    // Start simulation when in view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && messageIndex === 0 && chatContainer.innerHTML === '') {
+                playChat();
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    if(chatContainer) observer.observe(chatContainer);
+
+</script>
