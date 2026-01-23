@@ -1,10 +1,11 @@
 ---
 import Header from "../components/Header.astro";
-import CollaborationSection from "../components/home/CollaborationSection.astro";
-import PublicProfileSection from "../components/home/PublicProfileSection.astro";
-import ModerationSection from "../components/home/ModerationSection.astro";
-import IntelligenceSection from "../components/home/IntelligenceSection.astro";
-import CustomizeSection from "../components/home/CustomizeSection.astro";
+import CollaborationSection from "../components/home/react/CollaborationSection";
+import PublicProfileSection from "../components/home/react/PublicProfileSection";
+import ModerationSection from "../components/home/react/ModerationSection";
+import IntelligenceSection from "../components/home/react/IntelligenceSection";
+import CustomizeSection from "../components/home/react/CustomizeSection";
+import Footer from "../components/Footer.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import RootLayout from "../layouts/RootLayout.astro";
 ---
@@ -57,13 +58,14 @@ import RootLayout from "../layouts/RootLayout.astro";
     </section>
 
     
-    <div class="space-y-32 pb-32">
-        <CollaborationSection />
-        <PublicProfileSection />
-        <ModerationSection />
-        <IntelligenceSection />
-        <CustomizeSection />
+    <div class="flex flex-col gap-32 py-20">
+        <CollaborationSection client:visible />
+        <PublicProfileSection client:visible />
+        <ModerationSection client:visible />
+        <CustomizeSection client:visible />
+        <IntelligenceSection client:visible />
     </div>
 
   </main>
+  <Footer />
 </RootLayout>

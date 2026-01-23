@@ -12,7 +12,11 @@
 }
 
 @theme {
-	--color-theme-dark: oklch(0.2254 0.0015 197.05)
+	--color-theme-dark: oklch(0.2254 0.0015 197.05);
+    --color-primary: #3B79F5;
+    --color-secondary: #276E85;
+    --color-accent: #7CCCCE;
+    --color-chat-bg: #1E1E1E;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
