@@ -9,14 +9,14 @@ const avatars = {
 };
 
 const conversation = [
-	{ type: 'collab', text: 'Hey team, did we finalize the Q3 roadmap?', delay: 1000 },
-	{ type: 'user', text: 'Just wrapping it up. @RevampBot can you summarize the key action items?', delay: 2500 },
-	{ type: 'ai', text: 'Sure! Here are the key action items:\n1. Finalize API v2 specs\n2. Update design system tokens\n3. Schedule user interviews.', delay: 1500 },
-	{ type: 'collab', text: 'Thanks! I will pick up the API specs.', delay: 3000 },
-	{ type: 'user', text: 'Great, I will handle the design tokens.', delay: 2000 },
-	{ type: 'ai', text: 'I have created Jira tickets for both tasks and assigned them to you.', delay: 1500 },
-	{ type: 'user', text: 'Perfect. Lets sync again tomorrow.', delay: 2500 },
-	{ type: 'collab', text: 'Sounds good.', delay: 1500 }
+	{ type: 'collab', text: 'Hey team, did we finalize the Q3 roadmap?', delay: 1000, timestamp: '2:45 PM' },
+	{ type: 'user', text: 'Just wrapping it up. @RevampBot can you summarize the key action items?', delay: 2500, timestamp: '2:46 PM' },
+	{ type: 'ai', text: 'Sure! Here are the key action items:\n1. Finalize API v2 specs\n2. Update design system tokens\n3. Schedule user interviews.', delay: 1500, timestamp: '2:46 PM' },
+	{ type: 'collab', text: 'Thanks! I will pick up the API specs.', delay: 3000, timestamp: '2:47 PM' },
+	{ type: 'user', text: 'Great, I will handle the design tokens.', delay: 2000, timestamp: '2:47 PM' },
+	{ type: 'ai', text: 'I have created Jira tickets for both tasks and assigned them to you.', delay: 1500, timestamp: '2:48 PM' },
+	{ type: 'user', text: 'Perfect. Lets sync again tomorrow.', delay: 2500, timestamp: '2:48 PM' },
+	{ type: 'collab', text: 'Sounds good.', delay: 1500, timestamp: '2:49 PM' }
 ];
 
 export default function ChatTab() {
@@ -61,7 +61,7 @@ export default function ChatTab() {
 									{msg.text}
 								</div>
 								<span className="text-[10px] text-white/30 px-1">
-									{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+									{msg.timestamp}
 								</span>
 							</div>
 						</div>
