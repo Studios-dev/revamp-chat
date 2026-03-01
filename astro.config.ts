@@ -5,13 +5,15 @@ import sitemap from "@astrojs/sitemap";
 import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss, { type PluginOptions } from "@tailwindcss/vite";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://revamp.chat",
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), react()],
   vite: {
     // @ts-expect-error types are jank 
-	plugins: [tailwindcss()],
+    plugins: [tailwindcss()],
   },
   server: {
     port: 3000
@@ -20,12 +22,12 @@ export default defineConfig({
     defaultStrategy: "viewport",
   },
   experimental: {
-		fonts: [
-			{
-				provider: fontProviders.google(),
-				name: "Inter",
-				cssVariable: "--font-inter",
-			},
-		],
-	}
+        fonts: [
+            {
+                provider: fontProviders.google(),
+                name: "Inter",
+                cssVariable: "--font-inter",
+            },
+        ],
+    }
 });

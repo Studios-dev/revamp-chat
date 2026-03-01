@@ -1,5 +1,11 @@
 ---
 import Header from "../components/Header.astro";
+import CollaborationSection from "../components/home/react/CollaborationSection";
+import PublicProfileSection from "../components/home/react/PublicProfileSection";
+import ModerationSection from "../components/home/react/ModerationSection";
+import IntelligenceSection from "../components/home/react/IntelligenceSection";
+import CustomizeSection from "../components/home/react/CustomizeSection";
+import Footer from "../components/Footer.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import RootLayout from "../layouts/RootLayout.astro";
 ---
@@ -8,7 +14,7 @@ import RootLayout from "../layouts/RootLayout.astro";
   <!-- <Header /> -->
   <main class="grow md:p-5 p-2 flex flex-col">
     <section
-      class="grow text-white relative *:rounded-3xl rounded-3xl ring ring-inset ring-white/20 overflow-hidden "
+      class="grow min-h-[calc(100vh-1rem)] md:min-h-[calc(100vh-2.5rem)] text-white relative *:rounded-3xl rounded-3xl ring ring-inset ring-white/20 overflow-hidden "
     >
     <div
         class="absolute bg-radial-[at_50%_15%] from-[#89C6DA] to-[#005379] -inset-100 md:inset-0"
@@ -50,5 +56,16 @@ import RootLayout from "../layouts/RootLayout.astro";
         </div>
       </div>
     </section>
+
+    
+    <div class="flex flex-col gap-32 py-20">
+        <CollaborationSection client:visible />
+        <PublicProfileSection client:visible />
+        <ModerationSection client:visible />
+        <CustomizeSection client:visible />
+        <IntelligenceSection client:visible />
+    </div>
+
   </main>
+  <Footer />
 </RootLayout>
